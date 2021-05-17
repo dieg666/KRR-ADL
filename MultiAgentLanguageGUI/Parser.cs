@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MultiAgentLanguageModels;
 using MultiAgentLanguageModels.Expressions;
 
-namespace MultiAgentLanguageGUI
+namespace ADLGUI
 {
     public class ParserState
     {

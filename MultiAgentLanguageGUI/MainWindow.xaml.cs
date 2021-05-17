@@ -6,15 +6,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace MultiAgentLanguageGUI
+namespace ADLGUI
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private bool _parsed;
-        private HelpWindow _helpWindow;
         ParserState state;
         public bool Parsed {
             get => _parsed;
@@ -32,13 +28,11 @@ namespace MultiAgentLanguageGUI
         public MainWindow()
         {
             InitializeComponent();
-            _helpWindow = null;
             state = new ParserState(null);
             Output.Target = TextBox_Output;
 
             TextBox_Story.Text =
-                @"
-Fluent availablechash
+                @"Fluent availablechash
 Fluent isinside
 Fluent haveproduct
 Fluent havenewproduct
@@ -66,17 +60,7 @@ Let's asssume the following scenario Sc= (OBS, ACS) such that:
 
         }
 
-        private void Button_Help_Click(object sender, RoutedEventArgs e)
-        {
-            if(_helpWindow == null)
-            {
-                HelpWindow window = new HelpWindow();
-                window.Owner = this;
-                window.Closed += (a, b) => _helpWindow = null;
-                window.Show();
-                _helpWindow = window;
-            }
-        }
+  
 
         private void Button_StoryParse_Click(object sender, RoutedEventArgs e)
         {
