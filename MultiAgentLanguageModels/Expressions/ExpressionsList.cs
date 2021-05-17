@@ -64,13 +64,7 @@ namespace MultiAgentLanguageModels.Expressions
                 return fluents.Distinct().ToList();
             }
         }
-        public List<Initially> Initially
-        {
-            get
-            {
-                return this.Where(x => x as Initially != null).Select(x => x as Initially).ToList();
-            }
-        }
+
         public List<ByCausesIf> Causes
         {
             get
