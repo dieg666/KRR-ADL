@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MultiAgentLanguageModels.Expressions
+namespace ADLModels.Expressions
 {
     public class ByCausesIf : Expression
     {

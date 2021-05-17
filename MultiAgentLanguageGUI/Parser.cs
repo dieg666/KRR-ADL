@@ -4,24 +4,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MultiAgentLanguageModels;
-using MultiAgentLanguageModels.Expressions;
+using ADLModels;
+using ADLModels.Expressions;
 
 namespace ADLGUI
 {
     public class ParserState
     {
         public List<Token> TokenList { get; set; }
-        public Dictionary<string, MultiAgentLanguageModels.Fluent> Fluent { get; set; }
-        public Dictionary<string, MultiAgentLanguageModels.Action> Action { get; set; }
-        public List<MultiAgentLanguageModels.Expressions.Expression> Expression { get; set; }
+        public Dictionary<string, ADLModels.Fluent> Fluent { get; set; }
+        public Dictionary<string, ADLModels.Action> Action { get; set; }
+        public List<ADLModels.Expressions.Expression> Expression { get; set; }
 
         public ParserState(List<Token> tokenList)
         {
             TokenList = tokenList;
-            Fluent = new Dictionary<string, MultiAgentLanguageModels.Fluent>();
-            Action = new Dictionary<string, MultiAgentLanguageModels.Action>();
-            Expression = new List<MultiAgentLanguageModels.Expressions.Expression>();
+            Fluent = new Dictionary<string, ADLModels.Fluent>();
+            Action = new Dictionary<string, ADLModels.Action>();
+            Expression = new List<ADLModels.Expressions.Expression>();
         }
 
         public Token PopToken()
@@ -46,11 +46,11 @@ namespace ADLGUI
 
         public void AddFluent(string name)
         {
-            Fluent.Add(name, new MultiAgentLanguageModels.Fluent(name));
+            Fluent.Add(name, new ADLModels.Fluent(name));
         }
         public void AddAction(string name, int duration)
         {
-            Action.Add(name, new MultiAgentLanguageModels.Action(name,duration));
+            Action.Add(name, new ADLModels.Action(name,duration));
         }
 
 
@@ -363,8 +363,8 @@ namespace ADLGUI
             switch (firstToken.Name)
             {
                 case "causes":
-                    MultiAgentLanguageModels.Action act =
-                        new MultiAgentLanguageModels.Action(state.TokenList[state.TokenList.Count - 1].Name);
+                    ADLModels.Action act =
+                        new ADLModels.Action(state.TokenList[state.TokenList.Count - 1].Name);
                     state.TokenList.RemoveAt(state.TokenList.Count - 1);
                     LogicElement effect = EntryC1(state);
                     Token if_exp = state.PeepToken();
@@ -380,8 +380,8 @@ namespace ADLGUI
                     }
                     break;
                 case "releases":
-                    MultiAgentLanguageModels.Action act1 =
-                        new MultiAgentLanguageModels.Action(state.TokenList[state.TokenList.Count - 1].Name);
+                    ADLModels.Action act1 =
+                        new ADLModels.Action(state.TokenList[state.TokenList.Count - 1].Name);
                     state.TokenList.RemoveAt(state.TokenList.Count - 1);
                     Token eff1 = state.PopToken();
                     if (eff1 == null)
@@ -408,9 +408,9 @@ namespace ADLGUI
             }
         }
 
-        private static List<MultiAgentLanguageModels.Action> GetActionList(ParserState state)
+        private static List<ADLModels.Action> GetActionList(ParserState state)
         {
-            List<MultiAgentLanguageModels.Action> actions = new List<MultiAgentLanguageModels.Action>();
+            List<ADLModels.Action> actions = new List<ADLModels.Action>();
             do
             {
                 if (state.PeepToken().Name == ",") state.PopToken();               
@@ -419,7 +419,7 @@ namespace ADLGUI
                 {
                     throw new Exception("Expected action.");
                 }
-                actions.Add(new MultiAgentLanguageModels.Action(a.Name));
+                actions.Add(new ADLModels.Action(a.Name));
             } while (state.PeepToken() != null && state.PeepToken().Name == ",");
             return actions;
         }

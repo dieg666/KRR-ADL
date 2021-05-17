@@ -1,4 +1,4 @@
-﻿namespace MultiAgentLanguageModels
+﻿namespace ADLModels
 {
     public abstract class LogicElement
     {

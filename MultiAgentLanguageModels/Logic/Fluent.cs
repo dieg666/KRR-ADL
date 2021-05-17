@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MultiAgentLanguageModels
+namespace ADLModels
 {
     public class Fluent : LogicElement, IEquatable<Fluent>
     {

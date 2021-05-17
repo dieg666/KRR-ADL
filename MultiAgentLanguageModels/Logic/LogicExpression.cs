@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MultiAgentLanguageModels
+namespace ADLModels
 {
     public class LogicExpression
     {
