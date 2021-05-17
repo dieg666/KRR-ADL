@@ -1,6 +1,5 @@
 ﻿# Multiagent-Action-Language
 
-<img src='./screenshot.PNG'>
 
 ## Summary
 Framework for multiagent reasoning from actions written entirely in C#. This implementation extents AR action language (actions with ramifications) on multiple agents. Main assumpions of this action language are:
