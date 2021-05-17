@@ -44,10 +44,7 @@ namespace MultiAgentLanguageGUI
         }
 
         public Token(int lineNumber, int columnNumber) : this(TokenType.Prototype, "", lineNumber, columnNumber)
-        {
-
-        }
-
+        {}
         public void ThrowException(string content)
         {
             throw new TokenException(
@@ -63,8 +60,6 @@ namespace MultiAgentLanguageGUI
 
     public class Tokenizer
     {
-        // wpisywanie poniższych słów kluczowych skutkuje stworzeniem tokenów o typie innym niż TokenType.Name
-        // przy nazwach złożonych z liter, cyfr i podkreślnika
         public static readonly Dictionary<string, TokenType> Keyword = new Dictionary<string, TokenType>
         {
             { "Action", TokenType.Action },
@@ -82,12 +77,9 @@ namespace MultiAgentLanguageGUI
             {"after", TokenType.Keyword },
             {"observable", TokenType.Keyword }
         };
-        // poniższe znaki traktowane są jako znaki operatorów i powodują przerwanie tworzenia tokena z alfanumerycznymi znakami
-        // wszystkie znaki niebędące na poniższej liście są traktowane jako części nazw/keywordów w przypadku liter, cyfr i _
-        // lub whitespace'y dla wszystkiego innego
+    
         public static readonly char[] OperatorCharacter = { '+', '-', '>', '<', '|', '&', '^', '(', ')', '[', ']', ',', '~', '.' };
-        // przypisanie typów tokenów do tekstowych operatorów, najdłuższe powinny być na początku
-        // każdy operator nie na liście jest traktowany jako błąd w czasie tokenizacji
+
         public static readonly Tuple<string, TokenType>[] LegalOperator =
         {
             Tuple.Create( "<->", TokenType.Operator ),

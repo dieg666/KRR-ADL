@@ -16,8 +16,6 @@ namespace MultiAgentLanguageGUI
         public Dictionary<string, MultiAgentLanguageModels.Action> Action { get; set; }
         public List<MultiAgentLanguageModels.Expressions.Expression> Expression { get; set; }
 
-
-
         public ParserState(List<Token> tokenList)
         {
             TokenList = tokenList;
@@ -88,13 +86,12 @@ namespace MultiAgentLanguageGUI
             return output;
         }
 
-
         public string ExpressionList()
         {
             string output = "";
             foreach (var exp in Expression)
             {
-                //output += exp.ToProlog() + "\n";
+                output += exp.ToString() + "\n";
             }
             return output;
         }
@@ -140,6 +137,7 @@ namespace MultiAgentLanguageGUI
         }
         public static void ParseAction(ParserState state, Token firstToken)
         {
+            int n;
             Token a = state.PopToken();
             if (a == null)
             {
@@ -147,13 +145,8 @@ namespace MultiAgentLanguageGUI
             }
             if (state.NameAvailable(a,a.Name))
             {
-
-                //deleting duration word
                 Token durationWord = state.PopToken();
-                //selecting the time
                 Token duration = state.PopToken();
-                int n;
-
                 if (!int.TryParse(duration.Name, out n))
                 {
                     firstToken.ThrowException("Action has to have numerical duration");
@@ -238,7 +231,6 @@ namespace MultiAgentLanguageGUI
             }
             return fluent;
         }
-
         public static LogicElement C5(ParserState state)
         {
             Token t = state.PopToken();
@@ -413,10 +405,8 @@ namespace MultiAgentLanguageGUI
                     firstToken.ThrowException("Unexpected 'if' token.");
                     break;
 
-
             }
         }
-
 
         private static List<MultiAgentLanguageModels.Action> GetActionList(ParserState state)
         {
